@@ -8,6 +8,8 @@
   <modules>
     <module>remex-framework</module>
     <module>remex-root</module>
+    <module>remex-iecup</module>
+    <module>remex-base</module>
   </modules>
   
   <distributionManagement>
@@ -23,6 +25,10 @@
   	</repository>
   </distributionManagement>
   
+  <properties>
+  	<july.version>0.0.1-SNAPSHOT</july.version>
+  </properties>
+  
   <dependencyManagement>
   	<dependencies>
   		<dependency>
@@ -30,12 +36,66 @@
   			<artifactId>remex-framework</artifactId>
   			<version>${project.version}</version>
   		</dependency>
+<<<<<<< HEAD
   		
   		<dependency>
+=======
+  		<dependency>
+  			<groupId>com.qylyx.remex</groupId>
+  			<artifactId>remex-base</artifactId>
+  			<version>${project.version}</version>
+  		</dependency>
+  		
+  		<dependency>
+  			<groupId>com.qylyx.july</groupId>
+  			<artifactId>july-salog</artifactId>
+  			<version>${july.version}</version>
+  		</dependency>
+  		
+  		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>1.4.2.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<version>1.4.2.RELEASE</version>
+		</dependency>
+  		<dependency>
+  			<groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		    <version>3.5</version>
+  		</dependency>
+  		<dependency>
+>>>>>>> 27972253c362c82028779ce4dd4c3c31adc6c376
 		    <groupId>org.slf4j</groupId>
 		    <artifactId>slf4j-api</artifactId>
 		    <version>1.7.25</version>
 		</dependency>
+<<<<<<< HEAD
+=======
+  		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>fastjson</artifactId>
+		    <version>1.2.31</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjrt</artifactId>
+		    <version>1.8.10</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.aspectj</groupId>
+		    <artifactId>aspectjweaver</artifactId>
+		    <version>1.8.10</version>
+		</dependency>
+		<dependency>
+		    <groupId>cglib</groupId>
+		    <artifactId>cglib-nodep</artifactId>
+		    <version>3.2.5</version>
+		</dependency>
+>>>>>>> 27972253c362c82028779ce4dd4c3c31adc6c376
 	</dependencies>
   </dependencyManagement>
 </project>
