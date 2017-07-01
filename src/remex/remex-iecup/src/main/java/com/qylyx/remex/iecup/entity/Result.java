@@ -10,9 +10,10 @@ public class Result<T> {
 	 * 结果代码
 	 * <pre>
 	 * 100：成功
-	 * 101：失败
+	 * 101：处理失败
 	 * 102：入参异常
 	 * 103：接口处理失败
+	 * 104：控制层处理失败
 	 * <pre>
 	 */
 	protected String code;
@@ -67,6 +68,14 @@ public class Result<T> {
 		this.data = data;
 		this.msg = msg;
 	}
+	
+	/**
+	 * 可打印的拼接好的日志信息
+	 * @return
+	 */
+	public String getLog() {
+		return " [code=" + code + ", msg=" + msg + "]";
+	}
 
 	public String getCode() {
 		return code;
@@ -90,6 +99,11 @@ public class Result<T> {
 
 	public void setData(T data) {
 		this.data = data;
+	}
+
+	@Override
+	public String toString() {
+		return "Result [code=" + code + ", msg=" + msg + ", data=" + data + "]";
 	}
 	
 	

@@ -9,6 +9,7 @@
     <module>remex-framework</module>
     <module>remex-root</module>
     <module>remex-iecup</module>
+    <module>remex-base</module>
   </modules>
   
   <distributionManagement>
@@ -24,12 +25,27 @@
   	</repository>
   </distributionManagement>
   
+  <properties>
+  	<july.version>0.0.1-SNAPSHOT</july.version>
+  </properties>
+  
   <dependencyManagement>
   	<dependencies>
   		<dependency>
   			<groupId>com.qylyx.remex</groupId>
   			<artifactId>remex-framework</artifactId>
   			<version>${project.version}</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>com.qylyx.remex</groupId>
+  			<artifactId>remex-base</artifactId>
+  			<version>${project.version}</version>
+  		</dependency>
+  		
+  		<dependency>
+  			<groupId>com.qylyx.july</groupId>
+  			<artifactId>july-salog</artifactId>
+  			<version>${july.version}</version>
   		</dependency>
   		
   		<dependency>
