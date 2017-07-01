@@ -1,4 +1,4 @@
-package com.qylyx.remex.framework.entity.result;
+package com.qylyx.remex.framework.base.entity.result;
 
 import java.io.Serializable;
 
@@ -65,6 +65,14 @@ public class Result implements Serializable {
 	 */
 	public boolean isSuccess() {
 		return SUCCESS_CODE.equals(this.code);
+	}
+	
+	/**
+	 * 是否操作失败
+	 * @return
+	 */
+	public boolean isFailed() {
+		return !isSuccess();
 	}
 	
 	/**

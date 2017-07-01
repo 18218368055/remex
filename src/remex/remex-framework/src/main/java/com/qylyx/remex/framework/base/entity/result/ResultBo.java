@@ -1,4 +1,4 @@
-package com.qylyx.remex.framework.entity.result;
+package com.qylyx.remex.framework.base.entity.result;
 
 /**
  * 接口操作结果

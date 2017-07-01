@@ -1,4 +1,4 @@
-package com.qylyx.remex.framework.exception;
+package com.qylyx.remex.framework.base.exception;
 
 /**
  * remex异常类

@@ -1,4 +1,4 @@
-package com.qylyx.remex.framework.entity.result;
+package com.qylyx.remex.framework.base.entity.result;
 
 import java.io.Serializable;
 
