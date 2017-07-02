@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import com.qylyx.july.salog.annotation.Salog;
 import com.qylyx.remex.iecup.annotation.Iecup;
 import com.qylyx.remex.iecup.config.IecupSetting;
-import com.qylyx.remex.iecup.entity.Result;
+import com.qylyx.remex.iecup.entity.ResultEup;
 import com.qylyx.remex.iecup.exception.RemexIecupException;
 
 /**
@@ -35,13 +35,13 @@ public class IecupHandle {
 	 */
 	@SuppressWarnings("rawtypes")
 	public Object handle(ProceedingJoinPoint point) {
-		Result<?> result = null;
+		ResultEup<?> result = null;
 		try {
 			return point.proceed();
 		} catch (RemexIecupException e) {
-			result = new Result(e.getCode(), e.getMsg());
+			result = new ResultEup(e.getCode(), e.getMsg());
 		} catch (Throwable e) {
-			result = new Result(RemexIecupException.ERROR_CODE, RemexIecupException.ERROR_MSG);
+			result = new ResultEup(RemexIecupException.ERROR_CODE, RemexIecupException.ERROR_MSG);
 		}
 		
 		//进行异常结果集日志打印的相关处理
@@ -56,7 +56,7 @@ public class IecupHandle {
 	 * @param point
 	 * @param result
 	 */
-	protected void processException(ProceedingJoinPoint point, Result<?> result) {
+	protected void processException(ProceedingJoinPoint point, ResultEup<?> result) {
 		try {
 			String logPrefix = "";
 			Class<?> entityClass = point.getTarget().getClass();

@@ -9,7 +9,7 @@ import com.qylyx.remex.iecup.mop.IecupHandle;
 
 /**
  * iecup接口异常集中统一处理的父拦截器，可以继承来快速配置拦截器，默认拦截返回Result的方法，以aop环绕通知来进行异常的统一处理
- * @see com.qylyx.remex.iecup.entity.Result
+ * @see com.qylyx.remex.framework.base.entity.result.Result
  * 
  * @author Qiaoxin.Hong
  *
@@ -19,9 +19,11 @@ public class IecupInterceptor {
 	
 	/**
 	 * 切点，默认拦截返回Result的方法
-	 * @see com.qylyx.remex.iecup.entity.Result
+	 * @see com.qylyx.remex.framework.base.entity.result.Result
 	 */
-	@Pointcut("execution(com.qylyx.remex.iecup.entity.Result com.qylyx.dts.service.impl.UserServiceImpl.*(..))")
+//	@Pointcut("execution(com.qylyx.remex.iecup.entity.Result com.qylyx.dts.service.impl.UserServiceImpl.*(..))")
+//	@Pointcut("execution(com.qylyx.remex.iecup.entity.ResultEup com.qylyx.ccmt.sms.service.user.SmsUserService.*(..))")
+	@Pointcut("execution(com.qylyx.remex.iecup.entity.ResultEup *.*(..))")
 	protected void iecupMethod() {}
 	
 	/**

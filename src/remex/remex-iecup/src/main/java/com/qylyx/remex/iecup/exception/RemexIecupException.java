@@ -61,8 +61,13 @@ public class RemexIecupException extends RuntimeException {
 		setMsg(ERROR_MSG);
 	}
 
-
-	
+	/**
+	 * 可打印的拼接好的日志信息
+	 * @return
+	 */
+	public String getLog() {
+		return " [code=" + code + ", msg=" + msg + "]";
+	}
 	
 	
 	

@@ -1,15 +1,6 @@
 package com.qylyx.remex.framework.base.entity.result;
 
-import java.io.Serializable;
-
-/**
- * 接口基础操作的结果
- * @author Qiaoxin.Hong
- *
- */
-public class Result implements Serializable {
-	private static final long serialVersionUID = 1L;
-
+public class Result<T> {
 	/**
 	 * 结果代码-成功
 	 */
@@ -19,9 +10,10 @@ public class Result implements Serializable {
 	 * 结果代码
 	 * <pre>
 	 * 100：成功
-	 * 101：失败
+	 * 101：处理失败
 	 * 102：入参异常
 	 * 103：接口处理失败
+	 * 104：控制层处理失败
 	 * <pre>
 	 */
 	protected String code;
@@ -32,6 +24,11 @@ public class Result implements Serializable {
 	protected String msg;
 	
 	/**
+	 * 结果数据
+	 */
+	protected T data;
+	
+	/**
 	 * 构建基础操作的结果，默认成功，即code=100
 	 */
 	public Result() {
@@ -40,14 +37,15 @@ public class Result implements Serializable {
 	}
 	
 	/**
-	 * 构建基础操作的结果
-	 * @param code 结果代码
+	 * 操作结果，默认成功，即code=100
+	 * @param data 结果数据
 	 */
-	public Result(String code) {
+	public Result(T data) {
 		super();
-		this.code = code;
+		setCode(SUCCESS_CODE);
+		this.data = data;
 	}
-
+	
 	/**
 	 * 构建基础操作的结果
 	 * @param code 结果代码
@@ -56,6 +54,19 @@ public class Result implements Serializable {
 	public Result(String code, String msg) {
 		super();
 		this.code = code;
+		this.msg = msg;
+	}
+	
+	/**
+	 * 操作结果
+	 * @param code 结果代码
+	 * @param data 结果数据
+	 * @param msg 结果信息
+	 */
+	public Result(String code, T data, String msg) {
+		super();
+		this.code = code;
+		this.data = data;
 		this.msg = msg;
 	}
 	
@@ -99,9 +110,17 @@ public class Result implements Serializable {
 		this.msg = msg;
 	}
 
+	public T getData() {
+		return data;
+	}
+
+	public void setData(T data) {
+		this.data = data;
+	}
+
 	@Override
 	public String toString() {
-		return "BaseResult [code=" + code + ", msg=" + msg + "]";
+		return "Result [code=" + code + ", msg=" + msg + ", data=" + data + "]";
 	}
 	
 	
