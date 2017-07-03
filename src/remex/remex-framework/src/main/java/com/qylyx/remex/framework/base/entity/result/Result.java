@@ -1,16 +1,15 @@
 package com.qylyx.remex.framework.base.entity.result;
 
+import com.qylyx.remex.base.rconst.result.RemexResultConst;
+import com.qylyx.remex.base.web.exception.RemexRequestException;
+
 public class Result<T> {
-	/**
-	 * 结果代码-成功
-	 */
-	public final static String SUCCESS_CODE = "100";
 	
 	/**
 	 * 结果代码
 	 * <pre>
 	 * 100：成功
-	 * 101：处理失败
+	 * 101：操作异常
 	 * 102：入参异常
 	 * 103：接口处理失败
 	 * 104：控制层处理失败
@@ -33,7 +32,7 @@ public class Result<T> {
 	 */
 	public Result() {
 		super();
-		setCode(SUCCESS_CODE);
+		setCode(RemexResultConst.CODE_SUCCESS);
 	}
 	
 	/**
@@ -42,7 +41,7 @@ public class Result<T> {
 	 */
 	public Result(T data) {
 		super();
-		setCode(SUCCESS_CODE);
+		setCode(RemexResultConst.CODE_SUCCESS);
 		this.data = data;
 	}
 	
@@ -75,7 +74,7 @@ public class Result<T> {
 	 * @return
 	 */
 	public boolean isSuccess() {
-		return SUCCESS_CODE.equals(this.code);
+		return RemexResultConst.CODE_SUCCESS.equals(this.code);
 	}
 	
 	/**
@@ -84,6 +83,17 @@ public class Result<T> {
 	 */
 	public boolean isFailed() {
 		return !isSuccess();
+	}
+	
+	/**
+	 * 在请求接口的地方获取结果数据时使用，在操作失败（即code != 100）时，会抛出RemexRequestException异常，可用于类似请求的集中处理等
+	 * @see com.qylyx.remex.base.web.exception.RemexRequestException
+	 * @return
+	 */
+	public T getDataWeb() {
+		if (isFailed())
+			throw new RemexRequestException(code, RemexResultConst.MSG_FAIL, msg);
+		return data;
 	}
 	
 	/**

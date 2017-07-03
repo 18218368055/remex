@@ -21,9 +21,7 @@ public class IecupInterceptor {
 	 * 切点，默认拦截返回Result的方法
 	 * @see com.qylyx.remex.framework.base.entity.result.Result
 	 */
-//	@Pointcut("execution(com.qylyx.remex.iecup.entity.Result com.qylyx.dts.service.impl.UserServiceImpl.*(..))")
-//	@Pointcut("execution(com.qylyx.remex.iecup.entity.ResultEup com.qylyx.ccmt.sms.service.user.SmsUserService.*(..))")
-	@Pointcut("execution(com.qylyx.remex.iecup.entity.ResultEup *.*(..))")
+	@Pointcut("execution(com.qylyx.remex.framework.base.entity.result.Result *.*(..))")
 	protected void iecupMethod() {}
 	
 	/**

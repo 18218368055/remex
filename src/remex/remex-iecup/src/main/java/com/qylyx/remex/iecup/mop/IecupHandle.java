@@ -9,9 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.qylyx.july.salog.annotation.Salog;
+import com.qylyx.july.salog.extract.SalogExtractInfo;
+import com.qylyx.remex.framework.base.entity.result.Result;
 import com.qylyx.remex.iecup.annotation.Iecup;
 import com.qylyx.remex.iecup.config.IecupSetting;
-import com.qylyx.remex.iecup.entity.ResultEup;
 import com.qylyx.remex.iecup.exception.RemexIecupException;
 
 /**
@@ -35,13 +36,13 @@ public class IecupHandle {
 	 */
 	@SuppressWarnings("rawtypes")
 	public Object handle(ProceedingJoinPoint point) {
-		ResultEup<?> result = null;
+		Result<?> result = null;
 		try {
 			return point.proceed();
 		} catch (RemexIecupException e) {
-			result = new ResultEup(e.getCode(), e.getMsg());
+			result = new Result(e.getCode(), e.getMsg());
 		} catch (Throwable e) {
-			result = new ResultEup(RemexIecupException.ERROR_CODE, RemexIecupException.ERROR_MSG);
+			result = new Result(RemexIecupException.ERROR_CODE, RemexIecupException.ERROR_MSG);
 		}
 		
 		//进行异常结果集日志打印的相关处理
@@ -56,7 +57,7 @@ public class IecupHandle {
 	 * @param point
 	 * @param result
 	 */
-	protected void processException(ProceedingJoinPoint point, ResultEup<?> result) {
+	protected void processException(ProceedingJoinPoint point, Result<?> result) {
 		try {
 			String logPrefix = "";
 			Class<?> entityClass = point.getTarget().getClass();
@@ -77,16 +78,18 @@ public class IecupHandle {
 				//当开启了salog支持，从salog中提取日志信息的前缀
 				if (iecupSetting.isSalog() && (iecup == null || iecup.salog())) {
 					if (StringUtils.isBlank(logPrefix) && method.isAnnotationPresent(Salog.class)) {
-						//是否有Salog注解
-						if (entityClass.isAnnotationPresent(Salog.class)) {
-							Salog salog = entityClass.getAnnotation(Salog.class);
-							logPrefix += salog.value();
-						}
-						Salog salog = method.getAnnotation(Salog.class);
-						if (StringUtils.isNotBlank(logPrefix))
-							logPrefix += " - ";
-						//解析封装方法上Salog注解的相关配置
-						logPrefix += salog.value() + "，异常！ -";
+						logPrefix = SalogExtractInfo.getLogPrefix(entityClass, method);
+						logPrefix += "，操作异常！ -";
+//						//是否有Salog注解
+//						if (entityClass.isAnnotationPresent(Salog.class)) {
+//							Salog salog = entityClass.getAnnotation(Salog.class);
+//							logPrefix += salog.value();
+//						}
+//						Salog salog = method.getAnnotation(Salog.class);
+//						if (StringUtils.isNotBlank(logPrefix))
+//							logPrefix += " - ";
+//						//解析封装方法上Salog注解的相关配置
+//						logPrefix += salog.value() + ;
 					}
 				}
 				
