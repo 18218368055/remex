@@ -2,6 +2,8 @@ package com.qylyx.remex.framework.base.entity.result;
 
 import java.io.Serializable;
 
+import com.qylyx.remex.base.rconst.result.RemexResultConst;
+
 /**
  * web请求结果
  * @author Qiaoxin.Hong
@@ -27,11 +29,13 @@ public class ResultRequest implements Serializable {
 
 	public ResultRequest() {
 		super();
+		setCode(RemexResultConst.CODE_SUCCESS);
 	}
 
-	public ResultRequest(String code) {
+	public ResultRequest(Object data) {
 		super();
-		this.code = code;
+		setData(data);
+		setCode(RemexResultConst.CODE_SUCCESS);
 	}
 
 	public ResultRequest(String code, String msg) {

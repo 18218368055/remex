@@ -37,6 +37,7 @@ public class RemexExceptionResolver implements HandlerExceptionResolver {
 	@Override
 	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler,
 			Exception ex) {
+		System.out.println("======RemexExceptionResolver==========");
 		//当前请求类的日志记录器
 		Logger logger = LoggerFactory.getLogger(handler.getClass());
 		
