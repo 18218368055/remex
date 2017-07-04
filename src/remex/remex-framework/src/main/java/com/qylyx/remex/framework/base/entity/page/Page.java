@@ -21,7 +21,7 @@ public class Page<T> implements Serializable {
     /**
      * 每页的数量
      */
-    protected Long pageSize;
+    protected Integer pageSize;
     
     /**
      * 总记录数
@@ -36,52 +36,61 @@ public class Page<T> implements Serializable {
     /**
      * 数据
      */
-    protected List<T> datas;
+    protected List<T> data;
 
 	public Long getPageNum() {
 		return pageNum;
 	}
-
-	public void setPageNum(Long pageNum) {
-		this.pageNum = pageNum;
+	
+	public List<T> getRows() {
+		return data;
 	}
 
-	public Long getPageSize() {
+	public Page<T> setPageNum(Long pageNum) {
+		this.pageNum = pageNum;
+		return this;
+	}
+
+	public Integer getPageSize() {
 		return pageSize;
 	}
 
-	public void setPageSize(Long pageSize) {
+	public Page<T> setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
+		return this;
 	}
 
 	public Long getTotal() {
 		return total;
 	}
 
-	public void setTotal(Long total) {
+	public Page<T> setTotal(Long total) {
 		this.total = total;
+		return this;
 	}
 
 	public Long getTotalPage() {
 		return totalPage;
 	}
 
-	public void setTotalPage(Long totalPage) {
+	public Page<T> setTotalPage(Long totalPage) {
 		this.totalPage = totalPage;
+		return this;
 	}
 
-	public List<T> getDatas() {
-		return datas;
+	public List<T> getData() {
+		return data;
 	}
 
-	public void setDatas(List<T> datas) {
-		this.datas = datas;
+	public Page<T> setData(List<T> data) {
+		this.data = data;
+		return this;
 	}
 
 	@Override
 	public String toString() {
 		return "Page [pageNum=" + pageNum + ", pageSize=" + pageSize + ", total=" + total + ", totalPage=" + totalPage
-				+ ", datas=" + datas + "]";
+				+ ", data=" + data + "]";
 	}
     
     

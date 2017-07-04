@@ -10,10 +10,10 @@ import org.slf4j.LoggerFactory;
 
 import com.qylyx.july.salog.annotation.Salog;
 import com.qylyx.july.salog.extract.SalogExtractInfo;
-import com.qylyx.remex.framework.base.entity.result.Result;
+import com.qylyx.remex.base.entity.Result;
+import com.qylyx.remex.base.service.exception.RemexServiceException;
 import com.qylyx.remex.iecup.annotation.Iecup;
 import com.qylyx.remex.iecup.config.IecupSetting;
-import com.qylyx.remex.iecup.exception.RemexIecupException;
 
 /**
  * iecup接口异常集中统一处理核心处理器
@@ -39,10 +39,10 @@ public class IecupHandle {
 		Result<?> result = null;
 		try {
 			return point.proceed();
-		} catch (RemexIecupException e) {
+		} catch (RemexServiceException e) {
 			result = new Result(e.getCode(), e.getMsg());
 		} catch (Throwable e) {
-			result = new Result(RemexIecupException.ERROR_CODE, RemexIecupException.ERROR_MSG);
+			result = new Result(RemexServiceException.ERROR_CODE, RemexServiceException.ERROR_MSG);
 		}
 		
 		//进行异常结果集日志打印的相关处理
@@ -80,16 +80,6 @@ public class IecupHandle {
 					if (StringUtils.isBlank(logPrefix) && method.isAnnotationPresent(Salog.class)) {
 						logPrefix = SalogExtractInfo.getLogPrefix(entityClass, method);
 						logPrefix += "，操作异常！ -";
-//						//是否有Salog注解
-//						if (entityClass.isAnnotationPresent(Salog.class)) {
-//							Salog salog = entityClass.getAnnotation(Salog.class);
-//							logPrefix += salog.value();
-//						}
-//						Salog salog = method.getAnnotation(Salog.class);
-//						if (StringUtils.isNotBlank(logPrefix))
-//							logPrefix += " - ";
-//						//解析封装方法上Salog注解的相关配置
-//						logPrefix += salog.value() + ;
 					}
 				}
 				

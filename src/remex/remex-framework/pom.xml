@@ -17,6 +17,10 @@
 	    <groupId>com.qylyx.remex</groupId>
 	    <artifactId>remex-base</artifactId>
 	</dependency>
+	<dependency>
+	    <groupId>com.qylyx.remex</groupId>
+	    <artifactId>remex-iecup</artifactId>
+	</dependency>
 	
   	<dependency>
 	    <groupId>org.slf4j</groupId>

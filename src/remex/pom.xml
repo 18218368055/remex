@@ -41,6 +41,11 @@
   			<artifactId>remex-base</artifactId>
   			<version>${project.version}</version>
   		</dependency>
+  		<dependency>
+  			<groupId>com.qylyx.remex</groupId>
+  			<artifactId>remex-iecup</artifactId>
+  			<version>${project.version}</version>
+  		</dependency>
   		
   		<dependency>
   			<groupId>com.qylyx.july</groupId>

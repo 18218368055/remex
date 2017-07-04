@@ -21,10 +21,6 @@
 		<groupId>com.qylyx.remex</groupId>
 		<artifactId>remex-base</artifactId>
 	</dependency>
-	<dependency>
-		<groupId>com.qylyx.remex</groupId>
-		<artifactId>remex-framework</artifactId>
-	</dependency>
 	
 	<dependency>
 		<groupId>com.qylyx.july</groupId>

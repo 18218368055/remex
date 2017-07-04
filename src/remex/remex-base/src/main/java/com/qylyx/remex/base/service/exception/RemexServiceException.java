@@ -1,4 +1,4 @@
-package com.qylyx.remex.iecup.exception;
+package com.qylyx.remex.base.service.exception;
 
 
 /**
@@ -7,7 +7,7 @@ package com.qylyx.remex.iecup.exception;
  * @author Qiaoxin.Hong
  *
  */
-public class RemexIecupException extends RuntimeException {
+public class RemexServiceException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 	
 	/**
@@ -31,31 +31,31 @@ public class RemexIecupException extends RuntimeException {
 	protected String msg;
 	
 	
-	public RemexIecupException() {
+	public RemexServiceException() {
 		super();
 		setCode(ERROR_CODE);
 		setMsg(ERROR_MSG);
 	}
 	
-	public RemexIecupException(String code, String message) {
+	public RemexServiceException(String code, String message) {
 		super(message);
 		setCode(code);
 		setMsg(message);
 	}
 	
-	public RemexIecupException(String message) {
+	public RemexServiceException(String message) {
 		super(message);
 		setCode(ERROR_CODE);
 		setMsg(message);
 	}
 	
-	public RemexIecupException(String message, Throwable cause) {
+	public RemexServiceException(String message, Throwable cause) {
 		super(message, cause);
 		setCode(ERROR_CODE);
 		setMsg(message);
 	}
 	
-	public RemexIecupException(Throwable cause) {
+	public RemexServiceException(Throwable cause) {
 		super(cause);
 		setCode(ERROR_CODE);
 		setMsg(ERROR_MSG);

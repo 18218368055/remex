@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
-import com.qylyx.remex.framework.base.entity.result.ResultRequest;
+import com.qylyx.remex.base.entity.ResultRequest;
 
 /**
  * 用于处理spring mvc请求结果，将其转换为统一输出格式ResultRequest，
  * 请求方法返回类型必须是Object的，或String的，或直接就是ResultRequest类型的，
  * 针对非页面的数据的请求方式，即类上有RestController注解或方法上有ResponseBody注解的
  * 
- * @see com.qylyx.remex.framework.base.entity.result.ResultRequest
+ * @see com.qylyx.remex.base.entity.ResultRequest
  * @see org.springframework.web.bind.annotation.RestController
  * @see org.springframework.web.bind.annotation.ResponseBody
  * 

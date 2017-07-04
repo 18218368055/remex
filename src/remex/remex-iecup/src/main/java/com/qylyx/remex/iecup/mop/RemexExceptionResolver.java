@@ -17,9 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.qylyx.july.salog.extract.SalogExtractInfo;
+import com.qylyx.remex.base.entity.ResultRequest;
 import com.qylyx.remex.base.rconst.result.RemexResultConst;
 import com.qylyx.remex.base.web.exception.RemexRequestException;
-import com.qylyx.remex.framework.base.entity.result.ResultRequest;
 
 /**
  * spring mvc统一异常处理类，请求出现异常则进行日志打印及错误页面或数据格式的渲染，
@@ -37,7 +37,6 @@ public class RemexExceptionResolver implements HandlerExceptionResolver {
 	@Override
 	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler,
 			Exception ex) {
-		System.out.println("======RemexExceptionResolver==========");
 		//当前请求类的日志记录器
 		Logger logger = LoggerFactory.getLogger(handler.getClass());
 		
@@ -60,7 +59,7 @@ public class RemexExceptionResolver implements HandlerExceptionResolver {
 			if (StringUtils.isNotBlank(logPrefix))
 				logPrefix += "，操作异常！ -";
 			logger.error(logPrefix + remexRequestException.getLog(), remexRequestException);
-			resultRequest = handleResultRequest(remexRequestException.getCode(), remexRequestException.getShowMsg());
+			resultRequest = handleResultRequest(remexRequestException.getCode(), remexRequestException.getMsg());
 		} else {  //其它异常
 			logger.error("操作异常！", ex);
 			resultRequest = handleResultRequest(RemexResultConst.CODE_FAIL, RemexResultConst.MSG_FAIL);
@@ -87,7 +86,7 @@ public class RemexExceptionResolver implements HandlerExceptionResolver {
 	
 	/**
 	 * 请求数据异常时，返回给前端的数据，默认使用ResultRequest的json格式，子类可重写来返回新的数据格式
-	 * @see com.qylyx.remex.framework.base.entity.result.ResultRequest
+	 * @see com.qylyx.remex.base.entity.ResultRequest
 	 * @param code 异常代码
 	 * @param showMsg 展示的异常信息
 	 * @return

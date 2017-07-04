@@ -18,46 +18,47 @@ public class RemexRequestException extends RemexException {
 	protected String code = RemexResultConst.CODE_FAIL;
 	
 	/**
-	 * 异常提示信息，主要是服务器处理的信息，并不适合展示到页面，可用于打印日志
+	 * 用于页面展示的异常提示信息
 	 */
 	protected String msg = RemexResultConst.MSG_FAIL;
 	
 	/**
-	 * 用于页面展示的异常提示信息
+	 * 异常提示信息，主要是服务器处理的信息，并不适合展示到页面，可用于打印日志
 	 */
-	protected String showMsg = RemexResultConst.MSG_FAIL;
+	protected String serverMsg = RemexResultConst.MSG_FAIL;
+	
 	
 	public RemexRequestException() {
 		super();
 	}
 	
-	public RemexRequestException(String code, String showMsg) {
-		super(showMsg);
+	public RemexRequestException(String code, String msg) {
+		super(msg);
 		setCode(code);
-		setShowMsg(showMsg);
-	}
-	
-	public RemexRequestException(String code, String showMsg, String msg) {
-		super(showMsg);
-		setCode(code);
-		setShowMsg(showMsg);
 		setMsg(msg);
 	}
 	
-	public RemexRequestException(String showMsg) {
-		super(showMsg);
-		setShowMsg(showMsg);
-	}
-	
-	public RemexRequestException(String showMsg, Throwable cause) {
-		super(showMsg, cause);
-		setShowMsg(showMsg);
-	}
-	
-	public RemexRequestException(String showMsg, String msg, Throwable cause) {
-		super(showMsg, cause);
-		setShowMsg(showMsg);
+	public RemexRequestException(String code, String msg, String serverMsg) {
+		super(msg);
+		setCode(code);
 		setMsg(msg);
+		setServerMsg(serverMsg);
+	}
+	
+	public RemexRequestException(String msg) {
+		super(msg);
+		setMsg(msg);
+	}
+	
+	public RemexRequestException(String msg, Throwable cause) {
+		super(msg, cause);
+		setMsg(msg);
+	}
+	
+	public RemexRequestException(String msg, String serverMsg, Throwable cause) {
+		super(msg, cause);
+		setMsg(msg);
+		setServerMsg(serverMsg);
 	}
 	
 	public RemexRequestException(Throwable cause) {
@@ -70,30 +71,36 @@ public class RemexRequestException extends RemexException {
 	 */
 	public String getLog() {
 		return " [code=" + code + ", msg=" + msg
-				+ ", showMsg=" + showMsg + "]";
+				+ ", serverMsg=" + serverMsg + "]";
 	}
-	
-	public void setCode(String code) {
-		this.code = code;
-	}
-	
+
 	public String getCode() {
 		return code;
 	}
-	
-	public void setMsg(String msg) {
-		this.msg = msg;
+
+	public void setCode(String code) {
+		this.code = code;
 	}
-	
+
 	public String getMsg() {
 		return msg;
 	}
-	
-	public void setShowMsg(String showMsg) {
-		this.showMsg = showMsg;
+
+	public void setMsg(String msg) {
+		this.msg = msg;
 	}
-	
-	public String getShowMsg() {
-		return showMsg;
+
+	public String getServerMsg() {
+		return serverMsg;
+	}
+
+	public void setServerMsg(String serverMsg) {
+		this.serverMsg = serverMsg;
+	}
+
+	@Override
+	public String toString() {
+		return "RemexRequestException [code=" + code + ", msg=" + msg
+				+ ", serverMsg=" + serverMsg + "]";
 	}
 }

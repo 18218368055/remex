@@ -1,4 +1,4 @@
-package com.qylyx.remex.framework.base.entity.result;
+package com.qylyx.remex.base.entity;
 
 import com.qylyx.remex.base.rconst.result.RemexResultConst;
 import com.qylyx.remex.base.web.exception.RemexRequestException;
@@ -6,13 +6,14 @@ import com.qylyx.remex.base.web.exception.RemexRequestException;
 public class Result<T> {
 	
 	/**
-	 * 结果代码
+	 * 结果代码，100~299：remex内定代码；300~399：入参方面异常；400~499接口处理异常
 	 * <pre>
 	 * 100：成功
 	 * 101：操作异常
 	 * 102：入参异常
 	 * 103：接口处理失败
 	 * 104：控制层处理失败
+	 * 201：分页参数异常
 	 * <pre>
 	 */
 	protected String code;
