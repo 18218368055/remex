@@ -83,21 +83,16 @@
 		    <artifactId>spring-boot-starter-aop</artifactId>
 		    <version>1.5.2.RELEASE</version>
 		</dependency>
-		<!-- <dependency>
-		    <groupId>org.aspectj</groupId>
-		    <artifactId>aspectjrt</artifactId>
-		    <version>1.8.10</version>
-		</dependency>
 		<dependency>
-		    <groupId>org.aspectj</groupId>
-		    <artifactId>aspectjweaver</artifactId>
-		    <version>1.8.10</version>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-autoconfigure</artifactId>
+			<version>1.1.1</version>
 		</dependency>
-		<dependency>
-		    <groupId>cglib</groupId>
-		    <artifactId>cglib-nodep</artifactId>
-		    <version>3.2.5</version>
-		</dependency> -->
+		<dependency>  
+	    	<groupId>com.github.pagehelper</groupId>  
+	        <artifactId>pagehelper</artifactId>  
+	        <version>4.1.1</version>  
+	    </dependency>
 	</dependencies>
   </dependencyManagement>
 </project>

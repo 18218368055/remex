@@ -36,18 +36,21 @@ public class IecupHandle {
 	 */
 	@SuppressWarnings("rawtypes")
 	public Object handle(ProceedingJoinPoint point) {
+		Throwable ex = null;
 		Result<?> result = null;
 		try {
 			return point.proceed();
 		} catch (RemexServiceException e) {
 			result = new Result(e.getCode(), e.getMsg());
+			ex = e;
 		} catch (Throwable e) {
 			result = new Result(RemexServiceException.ERROR_CODE, RemexServiceException.ERROR_MSG);
+			ex = e;
 		}
 		
 		//进行异常结果集日志打印的相关处理
 		if (iecupSetting.isLog())
-			processException(point, result);
+			processException(point, result, ex);
 		
 		return result;
 	}
@@ -57,7 +60,7 @@ public class IecupHandle {
 	 * @param point
 	 * @param result
 	 */
-	protected void processException(ProceedingJoinPoint point, Result<?> result) {
+	protected void processException(ProceedingJoinPoint point, Result<?> result, Throwable ex) {
 		try {
 			String logPrefix = "";
 			Class<?> entityClass = point.getTarget().getClass();
@@ -84,7 +87,7 @@ public class IecupHandle {
 				}
 				
 				Logger logger = LoggerFactory.getLogger(point.getTarget().getClass());
-				logger.error(logPrefix + result.getLog());
+				logger.error(logPrefix + result.getLog(), ex);
 			}
 		} catch (Exception e) {
 			iecupLogger.error("iecup内部处理错误！", e);
