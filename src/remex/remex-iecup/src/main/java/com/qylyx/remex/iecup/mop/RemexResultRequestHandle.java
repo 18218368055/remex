@@ -52,11 +52,12 @@ public class RemexResultRequestHandle {
 			if (returnClass.equals(Object.class))
 				return new ResultRequest(obj);
 			
-			//返回结果类型不对时，是抛出异常还是直接返回结果
-			if (isExceptionByType())
-				throw new ClassCastException("返回结果不是Object、String、ResultRequest！");
-			else
-				return obj;
+//			//返回结果类型不对时，是抛出异常还是直接返回结果
+//			if (isExceptionByType())
+//				throw new ClassCastException("返回结果不是Object、String、ResultRequest！");
+//			else
+//				return obj;
+			return obj;
 		} else {  //页面请求，返回原始路径
 			return obj;
 		}
@@ -71,11 +72,11 @@ public class RemexResultRequestHandle {
 		return JSONObject.toJSONString(obj);
 	}
 	
-	/**
-	 * 返回类型不符合规范时，是否抛出异常
-	 * @return
-	 */
-	protected boolean isExceptionByType() {
-		return true;
-	}
+//	/**
+//	 * 返回类型不符合规范时，是否抛出异常
+//	 * @return
+//	 */
+//	protected boolean isExceptionByType() {
+//		return false;
+//	}
 }
