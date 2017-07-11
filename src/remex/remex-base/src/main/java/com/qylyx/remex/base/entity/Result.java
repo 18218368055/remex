@@ -1,5 +1,6 @@
 package com.qylyx.remex.base.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.qylyx.remex.base.rconst.result.RemexResultConst;
 import com.qylyx.remex.base.web.exception.RemexRequestException;
 
@@ -74,6 +75,7 @@ public class Result<T> {
 	 * 是否操作成功
 	 * @return
 	 */
+	@JSONField(serialize = false)
 	public boolean isSuccess() {
 		return RemexResultConst.CODE_SUCCESS.equals(this.code);
 	}
@@ -82,6 +84,7 @@ public class Result<T> {
 	 * 是否操作失败
 	 * @return
 	 */
+	@JSONField(serialize = false)
 	public boolean isFailed() {
 		return !isSuccess();
 	}
@@ -91,6 +94,7 @@ public class Result<T> {
 	 * @see com.qylyx.remex.base.web.exception.RemexRequestException
 	 * @return
 	 */
+	@JSONField(serialize = false)
 	public T getDataWeb() {
 		if (isFailed())
 			throw new RemexRequestException(code, RemexResultConst.MSG_FAIL, msg);
@@ -101,6 +105,7 @@ public class Result<T> {
 	 * 可打印的拼接好的日志信息
 	 * @return
 	 */
+	@JSONField(serialize = false)
 	public String getLog() {
 		return " [code=" + code + ", msg=" + msg + "]";
 	}
